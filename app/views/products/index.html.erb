@@ -1,0 +1,4 @@
+<h1>Products#index</h1>
+<% @products.each do |product| %>
+  <p><%= link_to product.title, product %></p>
+<% end %>
