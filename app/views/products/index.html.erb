@@ -9,7 +9,7 @@
       </header>
       <div class="card-image">
         <figure class="image is-4by3">
-        <%=image_tag(product.image, size: "100")%>
+        <%=link_to image_tag(product.image, size: "100"), product%>
         </figure>
       </div>
       <div class="card-content">
