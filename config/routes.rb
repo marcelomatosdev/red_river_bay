@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  # get 'abouts/index'
+  # get 'abouts/show'
   # get 'products/index'
   # get 'products/show'
   # get 'users/index'
@@ -11,6 +13,8 @@ Rails.application.routes.draw do
   get '/categories/:id', to: 'categories#show', id: /\d+/, as: 'category'
   get '/products', to: 'products#index'
   get '/products/:id', to: 'products#show', id: /\d+/, as: 'product'
+  get '/about', to: 'abouts#index'
+
   root to: 'products#index'
   # get 'categories/index'
   # get 'categories/show'
