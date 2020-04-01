@@ -2,3 +2,6 @@
 <%=@product.title%>
 <%=@product.user.username%>
 <%=image_tag(@product.image, size: "200")%>
+
+<%= link_to @product.category.name, @product.category%>
+
