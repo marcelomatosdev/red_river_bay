@@ -1,0 +1,27 @@
+
+
+.container{
+background:#f0f0f5;
+padding-left: 10px;
+padding-right: 10px;
+width: 100%;
+min-height: 800px;
+
+}
+
+header{
+  margin-bottom: 2rem;
+}
+.select{
+  margin-bottom: 2rem;
+}
+
+
+
+ p {
+
+   overflow: hidden;
+   text-overflow: ellipsis ;
+   max-height: fit-content;
+
+ }

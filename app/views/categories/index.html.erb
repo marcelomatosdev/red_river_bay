@@ -1,5 +1,8 @@
-<h1>Categories#index</h1>
+<h1 class="title is-4">Browse by category</h1>
 
 <% @categories.each do |category| %>
-  <p><%= link_to category.name, category %></p>
+<div class="tags has-addons">
+  <p class="tag is-large is-warning"><%= link_to category.name, category %></p>
+  <p class="tag"><%=pluralize(category.products.count,'item')%></p>
+</div>
 <% end %>
