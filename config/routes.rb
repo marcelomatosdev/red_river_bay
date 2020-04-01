@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'users/index'
+  get 'users/show'
+  get '/users', to: 'users#index'
+  get '/users/:id', to: 'users#show', id: /\d+/, as: 'user'
   get '/categories', to: 'categories#index'
   get '/categories/:id', to: 'categories#show', id: /\d+/, as: 'category'
   get 'categories/index'
