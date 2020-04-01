@@ -1,7 +1,8 @@
-<h1>Abouts#index</h1>
+
 
 <% @abouts.each do |about| %>
-  <p><%= about.title%></p>
-  <p><%= about.history%></p>
-  <p><%= about.description%></p>
+  <h1 class="title is-2"><%=about.title%></h1>
+  <h1 class="title is-4"><%=about.history%></h1>
+  <h1 class="title is-4"><%=about.description%></h1>
+
 <% end %>

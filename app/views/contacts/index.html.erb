@@ -1,6 +1,9 @@
-<h1>Contacts#index</h1>
+
+
 <% @contacts.each do |contact| %>
-  <p><%= contact.name%></p>
-  <p><%= contact.email%></p>
-  <p><%= contact.phone%></p>
+  <h1 class="title is-5">Name: <%=contact.name%></h1>
+  <h1 class="title is-5">E-mail: <%=contact.email%></h1>
+  <h1 class="title is-5">Phone: <%=contact.phone%></h1>
+
+
 <% end %>
