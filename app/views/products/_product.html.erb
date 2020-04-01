@@ -1,0 +1,24 @@
+
+<div class="columns is-multiline">
+<% @products.each do |product| %>
+  <div class="column is-one-quarter">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title"><%= link_to product.title, product %></p>
+      </header>
+      <div class="card-image">
+        <figure class="image is-4by3">
+        <%=link_to image_tag(product.image, size: "100"), product%>
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <p> Price: <%=product.price%></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<%end%>
+</div>

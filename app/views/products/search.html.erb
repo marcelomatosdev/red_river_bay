@@ -1,0 +1,7 @@
+<%=render partial: 'products/search_form'%>
+<br>
+<p class="subtitle is-7">
+Found <%=pluralize(@products.size, 'result')%>
+for the search term "<%=params[:search_term] %>".
+</p>
+<%=render partial: 'products/product'%>
