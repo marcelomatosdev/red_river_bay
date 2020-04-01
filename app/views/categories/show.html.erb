@@ -1,3 +1,7 @@
 <h1>Categories#show</h1>
 
 <%=@category.name%>
+
+<% @category.products.each do |categoryProduct| %>
+<%=link_to categoryProduct.title, categoryProduct%>
+<% end %>
