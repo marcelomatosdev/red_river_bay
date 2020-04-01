@@ -1,7 +1,29 @@
-<h1>Products#show</h1>
-<%=@product.title%>
-<%=@product.user.username%>
-<%=image_tag(@product.image, size: "200")%>
 
-<%= link_to @product.category.name, @product.category%>
+<div class="columns">
+  <div class="card1">
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <figure>
+            <%=image_tag(@product.image, size: "400")%>
+          </figure>
+        </div>
+        <div class="media-content">
+          <p class="title is-4 has-text-danger"><%=@product.title%></p>
+          <p> Qty: <%=@product.quantity%></p>
+          <p> Price: <%=@product.price%></p>
+          <p>Description: <%=@product.description%></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <footer class="card-footer">
+    <p class="tag is-warning is-medium"><%= link_to @product.category.name, @product.category%></p>
+  </footer>
+
+
+</div>
 
