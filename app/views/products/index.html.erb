@@ -1,5 +1,21 @@
-<h1>Products#index</h1>
+<div class="columns is-multiline">
 <% @products.each do |product| %>
-<%=image_tag(product.image, size: "100")%>
-  <p><%= link_to product.title, product %></p>
-<% end %>
+  <div class="column is-one-third">
+    <div class="card">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure >
+              <%=image_tag(product.image, size: "100")%>
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4"><%= link_to product.title, product %></p>
+            <p> <%=product.price%></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<%end%>
+</div>
