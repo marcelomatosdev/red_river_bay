@@ -8,4 +8,8 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
   end
+
+  def search
+    @categories = Category.all
+  end
 end

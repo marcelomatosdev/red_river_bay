@@ -1,0 +1,22 @@
+
+
+<div class="dropdown is-hoverable">
+  <div class="dropdown-trigger">
+    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
+      <span>Category</span>
+      <span class="icon is-small">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </div>
+  <div class="dropdown-menu" id="dropdown-menu2" role="menu">
+    <div class="dropdown-content">
+      <% categories = Category.group(:name).each do |category|%>
+      <a href="#" class="dropdown-item">
+        <p><%=category.name%></p>
+      </a>
+      <hr class="dropdown-divider">
+      <%end%>
+    </div>
+  </div>
+</div>
