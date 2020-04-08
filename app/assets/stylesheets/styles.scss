@@ -1,5 +1,14 @@
 .search{
   display: flex;
+  align-items:center;
+  margin-bottom: 30px;
+  .select{
+    margin: 0px;
+    margin-right: 5px;
+  }
+}
+.paginate{
+  margin-left: 100px;
 
 }
 

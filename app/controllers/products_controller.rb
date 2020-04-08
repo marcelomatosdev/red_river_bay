@@ -10,6 +10,10 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.where('title LIKE ?', "%#{params[:search_term]}%").order(:title)
+    @products = Product.where('title LIKE ?', "%#{params[:search_term]}%").order(:title).page(params[:page]).per(12)
+  end
+
+  def new_products
+    @products = Product.where("created_at > date('now','-3 day') OR updated_at > date('now','-3 day')").order(:title).page(params[:page]).per(12)
   end
 end

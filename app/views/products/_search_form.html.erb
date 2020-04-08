@@ -1,8 +1,10 @@
 <div class="search">
 <div class="select">
   <% categories = Category.group(:name)%>
-  <%=select_tag "categories", options_from_collection_for_select(categories, "id", "name")%>
+  <%=select_tag :categories, options_from_collection_for_select(categories, "id", "name"),prompt: "Select a category"%>
+
 </div>
+
 
 <%= form_with(url: searchproduct_path, local:true, method: "get") do %>
 
@@ -15,5 +17,8 @@
     </div>
   </div>
 <% end %>
-
+  <div class="paginate">
+    <%=paginate @products%>
+  </div>
 </div>
+

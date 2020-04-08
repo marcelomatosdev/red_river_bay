@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get '/about', to: 'abouts#index'
   get '/contact', to: 'contacts#index'
   get '/searchproduct', to: 'products#search', as: 'searchproduct'
+  get '/newproducts', to: 'products#new_products', as: 'newproducts'
+
   get '/searchbycategory', to: 'category#search', as: 'searchbycategory'
   root to: 'products#index'
   # get 'categories/index'
