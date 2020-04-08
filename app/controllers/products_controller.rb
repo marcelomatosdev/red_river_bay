@@ -14,6 +14,10 @@ class ProductsController < ApplicationController
   end
 
   def new_products
-    @products = Product.where("created_at > date('now','-3 day') OR updated_at > date('now','-3 day')").order(:title).page(params[:page]).per(12)
+    @products = Product.where("created_at > date('now','-3 day')").order(:title).page(params[:page]).per(12)
+  end
+
+  def update_products
+    @products = Product.where("updated_at > date('now','-3 day')").order(:title).page(params[:page]).per(12)
   end
 end

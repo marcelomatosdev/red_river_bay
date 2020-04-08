@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/contact', to: 'contacts#index'
   get '/searchproduct', to: 'products#search', as: 'searchproduct'
   get '/newproducts', to: 'products#new_products', as: 'newproducts'
+  get '/updateproducts', to: 'products#update_products', as: 'updateproducts'
 
   get '/searchbycategories/:id/', to: 'category#search_by_categories', id: /\d+/, as: 'searchbycategories'
   root to: 'products#index'

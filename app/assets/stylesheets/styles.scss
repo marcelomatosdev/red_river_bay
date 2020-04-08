@@ -1,11 +1,21 @@
-.search{
+.searchProduct{
   display: flex;
-  align-items:center;
+
   margin-bottom: 30px;
-  .select{
+
+  #selectCategory{
     margin: 0px;
     margin-right: 5px;
   }
+
+  #searchProductInput{
+    justify-content: center;
+    display: flex;
+  }
+}
+
+form{
+  display: flex;
 }
 .paginate{
   margin-left: 100px;

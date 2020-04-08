@@ -1,14 +1,10 @@
-<div class="search">
-
-
-
-<%= form_with(url: searchproduct_path, local:true, method: "get") do %>
-  <div class="select">
-  <% categories = Category.group(:name)%>
-  <%=select_tag :categories, options_from_collection_for_select(categories, "id", "name"),prompt: "Select a category"%>
-
+<div class="searchProduct">
+  <%= form_with(url: searchproduct_path, local:true, method: "get") do %>
+  <div class="select" id="selectCategory">
+    <% categories = Category.group(:name)%>
+    <%=select_tag :categories, options_from_collection_for_select(categories, "id", "name"),prompt: "Select a category"%>
   </div>
-  <div class="field has-addons">
+  <div class="field has-addons" id="searchProductInput">
     <div class="control">
       <%= text_field_tag(:search_term, nil, class:'input', placeholder:'Product by name') %>
     </div>
