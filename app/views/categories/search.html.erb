@@ -1,0 +1,25 @@
+<h1 class="title is-4"><%=@category.name%></h1>
+
+<div class="columns is-multiline">
+<% @productsbycategory.products.each do |productbycategory| %>
+  <div class="column is-one-quarter">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title"><%= link_to productbycategory.title, productbycategory %></p>
+      </header>
+      <div class="card-image">
+        <figure class="image is-4by3">
+        <%=link_to image_tag(productbycategory.image, size: "100"), productbycategory%>
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <p> Price: <%=productbycategory.price%></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<%end%>
+</div>

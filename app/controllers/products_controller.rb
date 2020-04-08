@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.where('title LIKE ?', "%#{params[:search_term]}%").order(:title).page(params[:page]).per(12)
+    @products = Product.where('title LIKE ? AND category_id LIKE ?', "%#{params[:search_term]}%", "%#{params[:categories]}%").order(:title).page(params[:page]).per(12)
   end
 
   def new_products

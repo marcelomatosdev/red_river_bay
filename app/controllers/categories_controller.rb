@@ -9,7 +9,9 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
   end
 
-  def search
-    @categories = Category.all
+  def search_by_category
+    @category = Category.find(params[:id])
+    # @category = Category.where('id LIKE ?', "%#{params[:search_term]}%")
+    # @productsbycategory = @category.products.where('title LIKE ?', "%#{params[:search_term]}%").order(:title).page(params[:page]).per(12)
   end
 end
