@@ -20,8 +20,15 @@ Rails.application.routes.draw do
   get '/searchproduct', to: 'products#search', as: 'searchproduct'
   get '/newproducts', to: 'products#new_products', as: 'newproducts'
   get '/updateproducts', to: 'products#update_products', as: 'updateproducts'
-
   get '/searchbycategories/:id/', to: 'category#search_by_categories', id: /\d+/, as: 'searchbycategories'
+  get '/orders', to: 'orders#index'
+
+  scope '/checkout' do
+    post 'create', to: 'checkout#create', as: 'checkout_create'
+    get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
+    get 'success', to: 'checkout#success', as: 'checkout_success' # 20:54 time youtube video
+  end
+
   root to: 'products#index'
   # get 'categories/index'
   # get 'categories/show'
