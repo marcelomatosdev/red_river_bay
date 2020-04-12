@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  pst: 1
+  gst: 1
+  hst: 1
+  total: 1
+  user: one
+
+two:
+  status: MyString
+  pst: 1
+  gst: 1
+  hst: 1
+  total: 1
+  user: two
