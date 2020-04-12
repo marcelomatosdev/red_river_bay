@@ -11,7 +11,7 @@
         <div class="media-content">
           <p class="title is-4 has-text-danger"><%=@product.title%></p>
           <p> Qty: <%=@product.quantity%></p>
-          <p> Price: <%=@product.price%></p>
+          <p> Price: <%=number_to_currency @product.price.to_i%></p>
           <p>Description: <%=@product.description%></p>
         </div>
       </div>
