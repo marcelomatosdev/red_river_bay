@@ -21,7 +21,10 @@ Rails.application.routes.draw do
   get '/newproducts', to: 'products#new_products', as: 'newproducts'
   get '/updateproducts', to: 'products#update_products', as: 'updateproducts'
   get '/searchbycategories/:id/', to: 'category#search_by_categories', id: /\d+/, as: 'searchbycategories'
+
   get '/orders', to: 'orders#index'
+  post '/orders/add_to_cart/:id', to: 'orders#add_to_cart', as: 'add_to_cart'
+  delete '/orders/remove_from_cart/:id', to: 'orders#remove_from_cart', as: 'remove_from_cart'
 
   scope '/checkout' do
     post 'create', to: 'checkout#create', as: 'checkout_create'

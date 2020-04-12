@@ -15,6 +15,12 @@
         <div class="media">
           <div class="media-content">
             <p> Price: <%=number_to_currency product.price.to_i%></p>
+            <% if @cart.include?(product) %>
+              <i><p>Product added to your cart.</p></i>
+              <p><%= button_to 'Remove from cart', remove_from_cart_path(product), method: :delete%></p>
+            <% else %>
+              <p><%=link_to 'add to cart', add_to_cart_path(product.id), method: :post%></p>
+            <% end %>
           </div>
         </div>
       </div>
