@@ -1,13 +1,18 @@
 
 <div class="mainPanel">
   <div class="leftPanel">
+  <ul class="itemOrder">
+    <li>Product</li>
+    <li>Quantity</li>
+    <li>Price</li>
+    <li></li>
     <% @cart.each do |product|%>
-
       <li><%=product.title%></li>
-      <li><%=product.price%></li>
+      <li><%=product.quantity%></li>
+      <li><%=number_to_currency product.price.to_i%></li>
       <li><%= link_to 'remove', remove_from_cart_path(product), method: :delete%></li>
-
     <% end %>
+  </ul>
   </div>
   <div class="rightPanel">
     <h1>Summary values goes here</h1>

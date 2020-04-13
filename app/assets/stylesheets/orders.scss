@@ -9,13 +9,24 @@
 
 .leftPanel{
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+
   width: 80%;
   margin-right: 50px;
-  li{
-    list-style: none;
-  }
 
+
+}
+.itemOrder{
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  padding: 10px;
+
+;
+
+}
+li{
+  flex-direction: column;
+  list-style: none;
 }
 
 .rightPanel{
