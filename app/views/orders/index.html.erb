@@ -1,21 +1,40 @@
 
 <div class="mainPanel">
   <div class="leftPanel">
-  <ul class="itemOrder">
-    <li>Product</li>
-    <li>Quantity</li>
-    <li>Price</li>
-    <li></li>
+  <table class="itemOrder">
+  <tr>
+    <th>Product</th>
+    <th>Qty order</th>
+    <th>Stock available</th>
+    <th>Price</th>
+    <th></th>
+  </tr>
+    <%subtotal = 0%>
     <% @cart.each do |product|%>
-      <li><%=product.title%></li>
-      <li><%=product.quantity%></li>
-      <li><%=number_to_currency product.price.to_i%></li>
-      <li><%= link_to 'remove', remove_from_cart_path(product), method: :delete%></li>
+      <tr>
+        <td><%=product.title%></td>
+        <td class="qty_order">
+          <%=qty_order = text_field_tag product.id, '1', type: 'number'%>
+        </td>
+        <td class="stock"><%=product.quantity%></td>
+        <td><%=number_to_currency product.price.to_i%></td>
+        <td><%= link_to 'remove', remove_from_cart_path(product), method: :delete%></td>
+      </tr>
+    <%subtotal = subtotal + product.price.to_i%>
     <% end %>
-  </ul>
+  </table>
   </div>
   <div class="rightPanel">
-    <h1>Summary values goes here</h1>
+    <div class="rpHeader">
+      <h1>Order Summary</h1>
+    </div>
+    <div class="rpBody">
+      <h2>Products value: <%=number_to_currency subtotal%></h2>
+    </div>
+    <div class="rpFooter">
+      <p><%= button_to 'Checkout as Guest', orders_path, method: :get%></p>
+    </div>
+
   </div>
 </div>
 

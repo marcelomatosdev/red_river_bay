@@ -10,27 +10,39 @@
 .leftPanel{
   display: flex;
   flex-direction: column;
-
   width: 80%;
   margin-right: 50px;
+}
+
+td {
+  border-bottom: 1px solid black;
+  text-align: center;
+
+}
+tr{
+ line-height: 50px;
+ text-align: center;
+}
+
+#qty_order{
 
 
 }
-.itemOrder{
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  padding: 10px;
+.stock{
+width: auto;
+text-align: center;
 
-;
 
 }
-li{
-  flex-direction: column;
-  list-style: none;
-}
+
+
 
 .rightPanel{
   width: 20%;
-  border: medium;
-  border-color: red($color: #000000);
+  border-left: 1px solid black;
+  padding-left: 10px;
+  h1{
+    text-align: center;
+    font-weight: bold;
+  }
 }
