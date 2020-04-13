@@ -1,8 +1,16 @@
-<h1>Orders#index</h1>
 
+<div class="mainPanel">
+  <div class="leftPanel">
+    <% @cart.each do |product|%>
 
-<% @cart.each do |product|%>
-  <li><%=product.title%> - <%= link_to 'remove', remove_from_cart_path(product), method: :delete%></li>
-<% end %>
+      <li><%=product.title%></li>
+      <li><%=product.price%></li>
+      <li><%= link_to 'remove', remove_from_cart_path(product), method: :delete%></li>
 
+    <% end %>
+  </div>
+  <div class="rightPanel">
+    <h1>Summary values goes here</h1>
+  </div>
+</div>
 
