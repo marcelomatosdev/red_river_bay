@@ -35,7 +35,24 @@ text-align: center;
 
 }
 
+.rpHeader{
+  line-height: 50px;
+}
 
+.rpBody{
+  margin-bottom: 20px;
+}
+
+.rpFooter{
+  h2{
+    margin-top: 30px;
+    font-weight: bold;
+  }
+}
+
+#selectProvince{
+  margin-bottom: 10px;
+}
 
 .rightPanel{
   width: 20%;
@@ -44,5 +61,6 @@ text-align: center;
   h1{
     text-align: center;
     font-weight: bold;
+    vertical-align: middle;
   }
 }

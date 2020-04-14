@@ -14,7 +14,7 @@
       <tr>
         <td><%=product.title%></td>
         <td class="qty_order">
-          <%=qty_order = text_field_tag product.id, '1', type: 'number'%>
+          <%=@qty_order = text_field_tag product.id, '1', type: 'number'%>
         </td>
         <td class="stock"><%=product.quantity%></td>
         <td><%=number_to_currency product.price.to_i%></td>
@@ -29,12 +29,30 @@
       <h1>Order Summary</h1>
     </div>
     <div class="rpBody">
-      <h2>Products value: <%=number_to_currency subtotal%></h2>
+      <h2>Subtotal: <%=number_to_currency subtotal%></h2>
     </div>
     <div class="rpFooter">
-      <p><%= button_to 'Checkout as Guest', orders_path, method: :get%></p>
-    </div>
-
+      <%= form_with(url: select_province_path, local:true, method: "get") do %>
+        <div class="select is-small" id="selectProvince">
+          <% provinces = Province.all%>
+          <%=select_tag :province, options_from_collection_for_select(provinces, "name", "name"),prompt: "Select the Province"%>
+        </div>
+        <div>
+          <%= submit_tag("Calculate taxes", class:"button is-info is-small") %>
+        </div>
+      <% end %>
+      <div>
+        <%if @province == nil%>
+          <p>Please select a province</p>
+        <%else%>
+          <p>Province: <%=@province.first.name%></p>
+          <p>PST (<%=@province.first.pst / 1.0%>%):  <%=pst_calc = number_to_currency subtotal*@province.first.pst / 100%></p>
+          <p>GST (<%=@province.first.gst / 1.0%>%):  <%=gst_calc = number_to_currency subtotal*@province.first.gst / 100%></p>
+          <p>HST (<%=@province.first.hst / 1.0%>%):  <%=hst_calc = number_to_currency subtotal*@province.first.hst / 100%></p>
+          <h2>Total: <%=total = number_to_currency subtotal + (subtotal*@province.first.pst + subtotal*@province.first.gst + subtotal*@province.first.hst) / 100%> </h2>
+        <%end%>
+      </div>
   </div>
 </div>
+
 

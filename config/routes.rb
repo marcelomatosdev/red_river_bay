@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get '/orders', to: 'orders#index'
   post '/orders/add_to_cart/:id', to: 'orders#add_to_cart', as: 'add_to_cart'
   delete '/orders/remove_from_cart/:id', to: 'orders#remove_from_cart', as: 'remove_from_cart'
+  get '/orders', to: 'orders#select_province', as: 'select_province'
 
   scope '/checkout' do
     post 'create', to: 'checkout#create', as: 'checkout_create'
