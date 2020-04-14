@@ -45,13 +45,14 @@
         <%if @province == nil%>
           <p>Please select a province</p>
         <%else%>
-          <p>Province: <%=@province.first.name%></p>
+          <p>Province: <%=sprovince = @province.first.name%></p>
           <p>PST (<%=@province.first.pst / 1.0%>%):  <%=pst_calc = number_to_currency subtotal*@province.first.pst / 100%></p>
           <p>GST (<%=@province.first.gst / 1.0%>%):  <%=gst_calc = number_to_currency subtotal*@province.first.gst / 100%></p>
           <p>HST (<%=@province.first.hst / 1.0%>%):  <%=hst_calc = number_to_currency subtotal*@province.first.hst / 100%></p>
           <h2>Total: <%=total = number_to_currency subtotal + (subtotal*@province.first.pst + subtotal*@province.first.gst + subtotal*@province.first.hst) / 100%> </h2>
         <%end%>
       </div>
+      <p><%=link_to 'Checkout', pre_checkout_path(province:sprovince)%></p>
   </div>
 </div>
 

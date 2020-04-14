@@ -9,6 +9,16 @@ class OrdersController < ApplicationController
     # @province = Province.all
   end
 
+  def pre_checkout_post
+    User.create(user_params)
+    User.addresses.create(user_params)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def pre_checkout
+    @province = Province.where('name LIKE ?', "%#{params[:province]}%")
+  end
+
   def add_to_cart
     id = params[:id].to_i
     session[:cart] << id unless session[:cart].include?(id)
@@ -36,5 +46,9 @@ class OrdersController < ApplicationController
   def increment_visit_count
     session[:visit_count] += 1
     @visit_count = session[:visit_count]
+  end
+
+  def user_params
+    params.require(:user).permit(:username, :email, :first_name, :last_name, address_attributes: %i[street city postal_code province_id])
   end
 end
