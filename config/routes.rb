@@ -27,7 +27,8 @@ Rails.application.routes.draw do
   delete '/orders/remove_from_cart/:id', to: 'orders#remove_from_cart', as: 'remove_from_cart'
   get '/orders', to: 'orders#select_province', as: 'select_province'
   get '/orders/pre_checkout', to: 'orders#pre_checkout', as: 'pre_checkout'
-  post '/orders/pre_checkout', to: 'orders#pre_checkout_post', as: 'pre_checkout_post'
+  post '/orders/pre_checkout', to: 'orders#pre_checkout_user', as: 'pre_checkout_user'
+  post '/orders/pre_checkout', to: 'orders#pre_checkout_address', as: 'pre_checkout_address'
 
   scope '/checkout' do
     post 'create', to: 'checkout#create', as: 'checkout_create'

@@ -9,15 +9,21 @@ class OrdersController < ApplicationController
     # @province = Province.all
   end
 
-  def pre_checkout_post
-    new_user = User.create(user_params)
-    new_user.addresses.create(user_params['address'])
+  def pre_checkout_user
+    new_user ||= User.create(username: params[:username], email: params[:email], first_name: params[:first_name], last_name: params[:last_name])
+    new_user.addresses.create(user_id: new_user.id, province_id: session[:s_province], street: params[:street], city: params[:city], postal_code: params[:postal_code])
     redirect_back(fallback_location: root_path)
-    logger.debug(user_params)
+  end
+
+  def pre_checkout_address
+    new_user ||= User.create(user_params)
+    # new_user.addresses.create(address_params) if new_user && address_params
+    redirect_back(fallback_location: root_path)
   end
 
   def pre_checkout
     @province = Province.where('name LIKE ?', "%#{params[:province]}%")
+    session[:s_province] = @province.first.id
   end
 
   def add_to_cart
@@ -40,7 +46,7 @@ class OrdersController < ApplicationController
   private
 
   def initialize_session
-    session[:visit_count] ||= 0
+    session[:s_province] ||= 0
     session[:cart] ||= []
   end
 
@@ -48,12 +54,12 @@ class OrdersController < ApplicationController
     session[:visit_count] += 1
     @visit_count = session[:visit_count]
   end
-
-  def user_params
-    params.require(:user).permit(:username, :email, :first_name, :last_name, address_attributes: %i[street city postal_code province_id])
-  end
-
-  # def address_params
-  #   params.require(:user).permit(:street, :city, :postal_code, :province_id)
-  # end
 end
+
+# <%= form_with(url: pre_checkout_user_path, local:true, method: "post") do |user_form|%>
+#   <li>Username<%= user_form.text_field :username %></li>
+#   <li>Email: <%= user_form.text_field :email%></li>
+#   <li>First name: <%= user_form.text_field :first_name %></li>
+#   <li>Last name : <%= user_form.text_field :last_name %></li>
+# <%= submit_tag("Save user", class:"button is-info is-small") %>
+# <% end %>

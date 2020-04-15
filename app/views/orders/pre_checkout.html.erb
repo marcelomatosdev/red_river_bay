@@ -1,19 +1,15 @@
-
 <div id="form_user">
-  <%= form_for :user do |f| %>
-    <li>Username: <%= f.text_field :username%></li>
-    <li>Email: <%= f.text_field :email%></li>
-    <li>First name: <%= f.text_field :first_name %></li>
-    <li>Last name : <%= f.text_field :last_name %></li>
+<%= form_with(url: pre_checkout_user_path, local:true, method: "post") do |user_form|%>
+  <li>Username<%= user_form.text_field :username %></li>
+  <li>Email: <%= user_form.text_field :email%></li>
+  <li>First name: <%= user_form.text_field :first_name %></li>
+  <li>Last name : <%= user_form.text_field :last_name %></li>
+  <li>Street : <%= user_form.text_field :street %></li>
+  <li>City : <%= user_form.text_field :city %></li>
+  <li>Postal Code: <%= user_form.text_field :postal_code %></li>
+  <li>Province: <%= @province.first.name %></li>
 
-<p>Address:</p>
-    <%= f.fields_for :address do |o| %>
-      <li>Street: <%= o.text_field :street %></li>
-      <li>City: <%= o.text_field :city %></li>
-      <li>Postal Code: <%= o.text_field :postal_code %></li>
-      <li>Province: <%=@province.first.name%></li>
-      <%o.text_field :province_id, :value =>@province.first.id%>
-    <% end %>
-  <li><%= f.submit %></li>
-  <% end %>
+<%= submit_tag("Save your information and pay", class:"button is-info is-small") %>
+<% end %>
+
 </div>
