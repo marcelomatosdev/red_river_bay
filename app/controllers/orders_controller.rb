@@ -10,8 +10,10 @@ class OrdersController < ApplicationController
   end
 
   def pre_checkout_post
-    User.create(user_params)
-    User.addresses.create(user_params)
+    new_user = User.new
+    new_user.addresses.new
+    new_user.addresses.new(user_params)
+
     redirect_back(fallback_location: root_path)
   end
 
@@ -51,4 +53,8 @@ class OrdersController < ApplicationController
   def user_params
     params.require(:user).permit(:username, :email, :first_name, :last_name, address_attributes: %i[street city postal_code province_id])
   end
+
+  # def address_params
+  #   params.require(:user).permit(:street, :city, :postal_code, :province_id)
+  # end
 end

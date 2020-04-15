@@ -12,6 +12,7 @@
       <li>City: <%= o.text_field :city %></li>
       <li>Postal Code: <%= o.text_field :postal_code %></li>
       <li>Province: <%=@province.first.name%></li>
+      <%o.text_field :province_id, :value =>@province.first.id%>
     <% end %>
   <li><%= f.submit %></li>
   <% end %>
