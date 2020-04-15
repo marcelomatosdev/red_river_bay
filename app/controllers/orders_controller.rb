@@ -9,8 +9,16 @@ class OrdersController < ApplicationController
   end
 
   def pre_checkout_user
+    @province = Province.find(session[:s_province])
     new_user ||= User.create(username: params[:email], email: params[:email], first_name: params[:first_name], last_name: params[:last_name])
-    new_user.addresses.create(user_id: new_user.id, province_id: session[:s_province], street: params[:street], city: params[:city], postal_code: params[:postal_code])
+    new_user.addresses.create(user_id: new_user.id, province_id: @province.id, street: params[:street], city: params[:city], postal_code: params[:postal_code])
+
+    subtotal = session[:s_subtotal]
+    pst = @province.pst.to_f / 100 * subtotal.to_f
+    gst = @province.gst.to_f / 100 * subtotal.to_f
+    hst = @province.hst.to_f / 100 * subtotal.to_f
+    total = subtotal + pst + gst + hst
+    new_order = Order.create(user_id: new_user.id, status: 'new', pst: pst, gst: gst, hst: hst, total: total)
     redirect_back(fallback_location: root_path)
   end
 

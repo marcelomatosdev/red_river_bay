@@ -25,7 +25,7 @@ require 'json'
 #   t.index ["user_id"], name: "index_products_on_user_id"
 # end
 
-NUMBER_OF_PRODUCTS = 100
+NUMBER_OF_PRODUCTS = 30
 
 NUMBER_OF_PRODUCTS.times do
   rand_user = User.order('RANDOM()').first

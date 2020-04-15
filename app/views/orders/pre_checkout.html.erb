@@ -14,6 +14,23 @@
     <% end %>
   </div>
 
+  <div class="middlePanel">
+  <table class="itemOrder">
+  <tr>
+    <th>Product</th>
+    <th>Qty</th>
+    <th>Price</th>
+  </tr>
+    <% @cart.each do |product|%>
+      <tr>
+        <td><%=product.title%></td>
+        <td>1</td>
+        <td><%=number_to_currency product.price.to_i%></td>
+      </tr>
+    <% end %>
+  </table>
+  </div>
+
   <div class="rightPanel">
     <h1>Order Summary</h1>
     <% subtotal = session[:s_subtotal]%>
