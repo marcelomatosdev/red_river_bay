@@ -14,12 +14,6 @@ class OrdersController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def pre_checkout_address
-    new_user ||= User.create(user_params)
-    # new_user.addresses.create(address_params) if new_user && address_params
-    redirect_back(fallback_location: root_path)
-  end
-
   def pre_checkout
     @province = Province.where('name LIKE ?', "%#{params[:province]}%")
     session[:s_province] = @province.first.id
