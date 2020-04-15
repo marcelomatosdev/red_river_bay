@@ -13,7 +13,6 @@ class OrdersController < ApplicationController
     new_user = User.new
     new_user.addresses.new
     new_user.addresses.new(user_params)
-
     redirect_back(fallback_location: root_path)
   end
 
