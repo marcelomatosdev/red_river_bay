@@ -10,10 +10,10 @@ class OrdersController < ApplicationController
   end
 
   def pre_checkout_post
-    new_user = User.new
-    new_user.addresses.new
-    new_user.addresses.new(user_params)
+    new_user = User.create(user_params)
+    new_user.addresses.create(user_params['address'])
     redirect_back(fallback_location: root_path)
+    logger.debug(user_params)
   end
 
   def pre_checkout
