@@ -18,8 +18,10 @@
         <div id="topHeader">
           <h1 class="title is-1 is-danger has-danger"><%= link_to image_tag("logo.png"), root_path %></h1>
           <div id="shoppingCartHeader">
+          <% if @cart%>
             <p><%= link_to image_tag("shopping_cart.png" ,size: "30"), orders_path %></p>
             <p>Items: <%=@cart.count%></p>
+          <% end %>
           </div>
         </div>
         <h2><%= link_to 'Products', root_path %> | <%= link_to 'Categories', categories_path %> | <b><%= link_to 'New Products', newproducts_path %></b> | <b><%= link_to 'Updated Products', updateproducts_path %></b> | <%= link_to 'About', about_path %> | <%= link_to 'Contact', contact_path %> </h2>
