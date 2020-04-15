@@ -1,15 +1,26 @@
-<div id="form_user">
-<%= form_with(url: pre_checkout_user_path, local:true, method: "post") do |user_form|%>
-  <li>Username<%= user_form.text_field :username %></li>
-  <li>Email: <%= user_form.text_field :email%></li>
-  <li>First name: <%= user_form.text_field :first_name %></li>
-  <li>Last name : <%= user_form.text_field :last_name %></li>
-  <li>Street : <%= user_form.text_field :street %></li>
-  <li>City : <%= user_form.text_field :city %></li>
-  <li>Postal Code: <%= user_form.text_field :postal_code %></li>
-  <li>Province: <%= @province.first.name %></li>
+<div class="mainPanel">
+  <div id="form_user">
+    <%= form_with(url: pre_checkout_user_path, local:true, method: "post") do |user_form|%>
+    <ul>
+      <li>Email:<%= user_form.text_field :email%></li>
+      <li>First name:<%= user_form.text_field :first_name %></li>
+      <li>Last name:<%= user_form.text_field :last_name %></li>
+      <li>Street:<%= user_form.text_field :street %></li>
+      <li>City:<%= user_form.text_field :city %></li>
+      <li>Postal Code:<%= user_form.text_field :postal_code %></li>
+      <li>Province: <%= @province.first.name %></li>
+    </ul>
+    <%= submit_tag("Save your information and pay", class:"button is-info is-small") %>
+    <% end %>
+  </div>
 
-<%= submit_tag("Save your information and pay", class:"button is-info is-small") %>
-<% end %>
-
+  <div class="rightPanel">
+    <h1>Order Summary</h1>
+    <% subtotal = session[:s_subtotal]%>
+    <h2>Subtotal: <%= number_to_currency subtotal%></h2>
+    <p>PST (<%=@province.first.pst / 1.0%>%):  <%=pst_calc = number_to_currency subtotal*@province.first.pst / 100%></p>
+    <p>GST (<%=@province.first.gst / 1.0%>%):  <%=gst_calc = number_to_currency subtotal*@province.first.gst / 100%></p>
+    <p>HST (<%=@province.first.hst / 1.0%>%):  <%=hst_calc = number_to_currency subtotal*@province.first.hst / 100%></p>
+    <h1 >Total: <%=total = number_to_currency subtotal + (subtotal*@province.first.pst + subtotal*@province.first.gst + subtotal*@province.first.hst) / 100%> </h2>
+  </div>
 </div>

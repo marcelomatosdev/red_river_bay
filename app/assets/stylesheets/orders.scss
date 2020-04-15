@@ -24,10 +24,7 @@ tr{
  text-align: center;
 }
 
-#qty_order{
 
-
-}
 .stock{
 width: auto;
 text-align: center;
@@ -65,14 +62,22 @@ text-align: center;
   }
 }
 
+
+
 #form_user{
   form{
     display: block;
+    width: 300px;
+    clear: both;
+   input{
+    width: 100%;
+    clear: both;
+    margin-bottom: 5px;
+   }
+   .button{
+     margin-top: 20px;
+   }
   }
 }
 
-#form_address{
-  form{
-    display: block;
-  }
-}
+

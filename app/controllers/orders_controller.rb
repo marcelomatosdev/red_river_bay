@@ -2,7 +2,6 @@
 
 class OrdersController < ApplicationController
   before_action :initialize_session
-  before_action :increment_visit_count
   before_action :select_province
 
   def index
@@ -10,7 +9,7 @@ class OrdersController < ApplicationController
   end
 
   def pre_checkout_user
-    new_user ||= User.create(username: params[:username], email: params[:email], first_name: params[:first_name], last_name: params[:last_name])
+    new_user ||= User.create(username: params[:email], email: params[:email], first_name: params[:first_name], last_name: params[:last_name])
     new_user.addresses.create(user_id: new_user.id, province_id: session[:s_province], street: params[:street], city: params[:city], postal_code: params[:postal_code])
     redirect_back(fallback_location: root_path)
   end
@@ -48,11 +47,7 @@ class OrdersController < ApplicationController
   def initialize_session
     session[:s_province] ||= 0
     session[:cart] ||= []
-  end
-
-  def increment_visit_count
-    session[:visit_count] += 1
-    @visit_count = session[:visit_count]
+    session[:s_subtotal] ||= 0
   end
 end
 

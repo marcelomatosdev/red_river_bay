@@ -22,6 +22,7 @@
       </tr>
     <%subtotal = subtotal + product.price.to_i%>
     <% end %>
+  <%session[:s_subtotal] = subtotal%>
   </table>
   </div>
   <div class="rightPanel">
