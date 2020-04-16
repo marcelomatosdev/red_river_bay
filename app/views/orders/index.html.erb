@@ -53,7 +53,7 @@
           <h2>Total: <%=total = number_to_currency subtotal + (subtotal*@province.first.pst + subtotal*@province.first.gst + subtotal*@province.first.hst) / 100%> </h2>
         <%end%>
       </div>
-      <p><%=link_to 'Checkout', pre_checkout_path(province:sprovince)%></p>
+      <p><%=link_to 'Proceed to Checkout', pre_checkout_path(province:sprovince)%></p>
   </div>
 </div>
 
