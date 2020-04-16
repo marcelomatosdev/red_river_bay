@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   before_action :load_cart
+  protect_from_forgery with: :null_session
 
   private
 

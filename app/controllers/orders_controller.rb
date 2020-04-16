@@ -19,7 +19,9 @@ class OrdersController < ApplicationController
     hst = @province.hst.to_f / 100 * subtotal.to_f
     total = subtotal + pst + gst + hst
     new_order = Order.create(user_id: new_user.id, status: 'new', pst: pst, gst: gst, hst: hst, total: total)
+    session[:s_order] = new_order.id
     redirect_back(fallback_location: root_path)
+    # redirect_to checkout_create_path, method: :post
   end
 
   def pre_checkout
@@ -50,6 +52,7 @@ class OrdersController < ApplicationController
     session[:s_province] ||= 0
     session[:cart] ||= []
     session[:s_subtotal] ||= 0
+    session[:s_order] ||= 0
   end
 end
 

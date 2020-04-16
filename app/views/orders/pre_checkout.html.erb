@@ -12,6 +12,7 @@
     </ul>
     <%= submit_tag("Checkout and PAY", class:"button is-info is-small") %>
     <% end %>
+    <%=button_to 'Pay now', checkout_create_path, method: :post, remote: true%>
   </div>
 
   <div class="middlePanel">
