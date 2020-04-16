@@ -13,11 +13,11 @@ class CheckoutController < ApplicationController
       payment_method_types: ['card'],
       line_items: [{
         name: order.user_id,
-        amount: order.total,
+        amount: order.total.to_i,
         currency: 'cad',
         quantity: 1
       }],
-      success_url: checkout_success_url,
+      success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: checkout_cancel_url
     )
 
@@ -26,7 +26,12 @@ class CheckoutController < ApplicationController
     end
   end
 
-  def success; end
+  def success
+    @order = Order.find(session[:s_order])
+    @session = Stripe::Checkout::Session.retrieve(params[:session_id])
+    @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
+    @order.update(stripe_id: @payment_intent.id, status: 'paid')
+  end
 
   def cancel; end
 end
