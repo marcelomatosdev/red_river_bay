@@ -33,13 +33,14 @@ class CheckoutController < ApplicationController
     @order.update(stripe_id: @payment_intent.id, status: 'paid')
 
     @cart.each do |product|
-      OrderProduct.create(order_id: @order.id, product_id: product.id, price: product.price, quantity: product.quantity)
+      OrderProduct.create(order_id: @order.id, product_id: product.id, price: product.price, quantity: 1)
       session[:invoice_product] << product.id
     end
 
     @invoiceProductList = Product.find(session[:invoice_product])
     @cart = nil
     session.delete :cart
+    session.delete :current_user
   end
 
   def cancel

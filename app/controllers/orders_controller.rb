@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
     @province = Province.find(session[:s_province])
     new_user ||= User.create(username: params[:email], email: params[:email], first_name: params[:first_name], last_name: params[:last_name])
     new_user.addresses.create(user_id: new_user.id, province_id: @province.id, street: params[:street], city: params[:city], postal_code: params[:postal_code])
-
+    session[:current_user] = new_user.id
     subtotal = session[:s_subtotal]
     pst = @province.pst.to_f / 100 * subtotal.to_f
     gst = @province.gst.to_f / 100 * subtotal.to_f
@@ -54,6 +54,7 @@ class OrdersController < ApplicationController
     session[:s_subtotal] ||= 0
     session[:s_order] ||= 0
     session[:invoice_product] = []
+    session[:current_user] ||= 0
   end
 end
 

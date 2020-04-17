@@ -2,17 +2,30 @@
   <div id="form_user">
     <%= form_with(url: pre_checkout_user_path, local:true, method: "post") do |user_form|%>
     <ul>
-      <li>Email:<%= user_form.text_field :email%></li>
-      <li>First name:<%= user_form.text_field :first_name %></li>
-      <li>Last name:<%= user_form.text_field :last_name %></li>
-      <li>Street:<%= user_form.text_field :street %></li>
-      <li>City:<%= user_form.text_field :city %></li>
-      <li>Postal Code:<%= user_form.text_field :postal_code %></li>
+      <% if session[:current_user] != 0 %>
+        <%current_user = User.find(session[:current_user])%>
+        <%current_address = current_user.addresses%>
+        <li>Email:<%= user_form.text_field :email, :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}', :value=> current_user.email %></li>
+        <li>First name:<%= user_form.text_field :first_name, :required => true, :value=> current_user.first_name %></li>
+        <li>Last name:<%= user_form.text_field :last_name, :required => true, :value=> current_user.last_name %></li>
+        <li>Street:<%= user_form.text_field :street, :required => true, :value=> current_address.first.street %></li>
+        <li>City:<%= user_form.text_field :city, :required => true, :value=> current_address.first.city %></li>
+        <li>Postal Code:<%= user_form.text_field :postal_code, :required => true, :pattern =>'^[a-zA-Z]{1}[0-9]{1}[a-zA-Z]{1}[- ]{0,1}[0-9]{1}[a-zA-Z]{1}[0-9]{1}', :value=> current_address.first.postal_code  %></li>
+      <% else %>
+        <li>Email:<%= user_form.text_field :email, :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}' %></li>
+        <li>First name:<%= user_form.text_field :first_name, :required => true%></li>
+        <li>Last name:<%= user_form.text_field :last_name, :required => true %></li>
+        <li>Street:<%= user_form.text_field :street, :required => true %></li>
+        <li>City:<%= user_form.text_field :city, :required => true %></li>
+        <li>Postal Code:<%= user_form.text_field :postal_code, :required => true, :pattern =>'^[a-zA-Z]{1}[0-9]{1}[a-zA-Z]{1}[- ]{0,1}[0-9]{1}[a-zA-Z]{1}[0-9]{1}' %></li>
+      <% end %>
       <li>Province: <%= @province.first.name %></li>
     </ul>
-    <%= submit_tag("Checkout and PAY", class:"button is-info is-small") %>
+    <%= submit_tag("Save your info", class: session[:current_user] != 0 ? "btn-hide-class" : "button is-info is-small") %>
+    <%= submit_tag("Change your info", class: session[:current_user] == 0 ? "btn-hide-class" : "button is-info is-small") %>
     <% end %>
-    <%=button_to 'Pay now', checkout_create_path, method: :post, remote: true%>
+    <%=button_to 'Pay now', checkout_create_path, method: :post, class: session[:current_user] == 0 ? "btn-hide-class" : "button is-info is-small",
+remote: true%>
   </div>
 
   <div class="middlePanel">
