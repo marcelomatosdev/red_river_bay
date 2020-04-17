@@ -53,6 +53,7 @@ class OrdersController < ApplicationController
     session[:cart] ||= []
     session[:s_subtotal] ||= 0
     session[:s_order] ||= 0
+    session[:invoice_product] = []
   end
 end
 

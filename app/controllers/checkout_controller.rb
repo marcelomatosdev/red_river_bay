@@ -8,12 +8,12 @@ class CheckoutController < ApplicationController
       redirect_to pre_checkout_path
       return
     end
-
+    user = User.find(order.user_id)
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [{
-        name: order.user_id,
-        amount: order.total.to_i,
+        name: user.email,
+        amount: order.total.to_i * 100,
         currency: 'cad',
         quantity: 1
       }],
@@ -31,7 +31,18 @@ class CheckoutController < ApplicationController
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
     @order.update(stripe_id: @payment_intent.id, status: 'paid')
+
+    @cart.each do |product|
+      OrderProduct.create(order_id: @order.id, product_id: product.id, price: product.price, quantity: product.quantity)
+      session[:invoice_product] << product.id
+    end
+
+    @invoiceProductList = Product.find(session[:invoice_product])
+    @cart = nil
+    session.delete :cart
   end
 
-  def cancel; end
+  def cancel
+    redirect_to pre_checkout_path
+  end
 end

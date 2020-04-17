@@ -1,7 +1,38 @@
-<h1>Success!</h1>
-<h1><%=@payment_intent.amount_received%></h1>
-<h1><%=@payment_intent.id%></h1>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+      <%user = User.find(@order.user_id)%>
+      Congratulations <%=user.first_name%> <%=user.last_name%>!!
+      </h1>
+      <h2 class="subtitle">
+      Your order will be processed right away!
+      </h2>
 
-<p><%=debug @session%></p>
-<p>ggggggggggggggggggg</p>
-<p><%=debug @payment_intent%></p>
+      <br>
+      <ul>
+        <li>Order number: <%=@order.id%></li>
+        <li>Amount paid: <%=number_to_currency @order.total%></li>
+      </ul>
+      <div class="confirmationOrderTable">
+        <table class="itemOrder">
+        <tr>
+          <th>Product</th>
+          <th>Qty</th>
+          <th>Price</th>
+        </tr>
+        <% @invoiceProductList.each do |product|%>
+          <tr>
+            <td><%=product.title%></td>
+            <td>1</td>
+            <td><%=number_to_currency product.price.to_i%></td>
+          </tr>
+        <% end %>
+        </table>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
