@@ -8,7 +8,7 @@
       </header>
       <div class="card-image">
         <figure class="image is-4by3">
-        <%=link_to image_tag(product.image, size: "100"), product%>
+        <%=link_to image_tag(product.image, size: "100", alt: product.title), product%>
         </figure>
       </div>
       <div class="card-content">
@@ -17,8 +17,8 @@
             <p> Price: <%=number_to_currency product.price.to_i%></p>
             <% if @cart%>
               <% if @cart.include?(product) %>
-                <i><p>Product added to your cart.</p></i>
-                <p><%= button_to 'Remove from cart', remove_from_cart_path(product), method: :delete%></p>
+                <p><i>Product added to your cart.</i></p>
+                <%= button_to 'Remove from cart', remove_from_cart_path(product), method: :delete%>
               <% else %>
                 <p><%=link_to 'add to cart', add_to_cart_path(product.id), method: :post%></p>
               <% end %>

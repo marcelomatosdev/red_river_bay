@@ -5,7 +5,7 @@
       <div class="media">
         <div class="media-left">
           <figure>
-            <%=image_tag(@product.image, size: "400")%>
+            <%=image_tag(@product.image, size: "400", alt: @product.title)%>
           </figure>
         </div>
         <div class="media-content">
@@ -25,5 +25,5 @@
   </footer>
 
 
-</div>
+
 

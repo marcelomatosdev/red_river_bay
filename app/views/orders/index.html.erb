@@ -1,29 +1,29 @@
 
 <div class="mainPanel">
   <div class="leftPanel">
-  <table class="itemOrder">
-  <tr>
-    <th>Product</th>
-    <th>Qty order</th>
-    <th>Stock available</th>
-    <th>Price</th>
-    <th></th>
-  </tr>
-    <%subtotal = 0%>
-    <% @cart.each do |product|%>
-      <tr>
-        <td><%=product.title%></td>
-        <td class="qty_order">
-          <%=@qty_order = text_field_tag product.id, '1', type: 'number'%>
-        </td>
-        <td class="stock"><%=product.quantity%></td>
-        <td><%=number_to_currency product.price.to_i%></td>
-        <td><%= link_to 'remove', remove_from_cart_path(product), method: :delete%></td>
-      </tr>
-    <%subtotal = subtotal + product.price.to_i%>
-    <% end %>
-  <%session[:s_subtotal] = subtotal%>
-  </table>
+    <table class="itemOrder">
+    <tr>
+      <th>Product</th>
+      <th>Qty order</th>
+      <th>Stock available</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+      <%subtotal = 0%>
+      <% @cart.each do |product|%>
+        <tr>
+          <td><%=product.title%></td>
+          <td class="qty_order">
+            <%=@qty_order = text_field_tag product.id, '1', type: 'number'%>
+          </td>
+          <td class="stock"><%=product.quantity%></td>
+          <td><%=number_to_currency product.price.to_i%></td>
+          <td><%= link_to 'remove', remove_from_cart_path(product), method: :delete%></td>
+        </tr>
+      <%subtotal = subtotal + product.price.to_i%>
+      <% end %>
+    <%session[:s_subtotal] = subtotal%>
+    </table>
   </div>
   <div class="rightPanel">
     <div class="rpHeader">
@@ -55,6 +55,7 @@
       </div>
       <p><%=link_to 'Proceed to Checkout', pre_checkout_path(province:sprovince)%></p>
   </div>
+</div>
 </div>
 
 
